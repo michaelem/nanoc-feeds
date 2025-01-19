@@ -1,10 +1,9 @@
 # frozen_string_literal: true
+require "zeitwerk"
 
-require_relative "feeds/version"
+loader = Zeitwerk::Loader.for_gem_extension(Nanoc)
+loader.setup
 
-module Nanoc
-  module Feeds
-    class Error < StandardError; end
-    # Your code goes here...
-  end
+module Nanoc::Feeds
+  class Error < StandardError; end
 end
