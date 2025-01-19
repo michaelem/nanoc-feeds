@@ -6,4 +6,6 @@ loader.setup
 
 module Nanoc::Feeds
   class Error < StandardError; end
+
+  include Nanoc::Feeds::Helpers::Feeds
 end
