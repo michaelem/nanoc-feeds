@@ -1,28 +1,48 @@
 # Nanoc::Feeds
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nanoc/feeds`. To experiment with that code, run `bin/console` for an interactive prompt.
+A set of helpers for generating additional feeds in nanoc. Currenntly JSON and Atom feeds are supported.
 
 ## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
 
 Install the gem and add to the application's Gemfile by executing:
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle add nanoc-feeds
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install nanoc-feeds
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+To generate JSON and Atom feeds add this gem to your `Gemfile` and then include the module in your `lib/helpers.rb` file:
+
+```ruby
+use_helper Nanoc::Feeds::Helpers::Feeds
+```
+
+Now create a `feed.erb` in your content folder using the helper provided:
+```erb
+<%= feed articles: sorted_articles %>
+```
+
+Finally add the following to your `Rules` file:
+```ruby
+compile "/feed.erb" do
+  filter :erb
+  write "/feed.xml"
+end
+
+compile "/feed.erb", rep: :json do
+  filter :erb
+  write "/feed.json"
+end
+```
+
+This will render a JSON (`feed.json`) and Atom (`feed.xml`) feed for your articles.
 
 ## Development
 
@@ -32,7 +52,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/nanoc-feeds.
+Bug reports and pull requests are welcome on GitHub at https://github.com/michaelem/nanoc-feeds.
 
 ## License
 
