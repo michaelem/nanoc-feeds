@@ -14,13 +14,17 @@ module Nanoc::Feeds::Helpers::Feeds
 
   def json_feed(params = {})
     articles = params[:articles]
+    articles = articles.first(params[:limit]) if params[:limit]
     title = params[:title] || @config[:title]
+
+    items = articles.map { |article| build_for_article(article, title) }
+
     {
       version: "https://jsonfeed.org/version/1.1",
       title: title,
       home_page_url: "#{config[:base_url]}",
       feed_url: "#{config[:base_url]}/feed.json",
-      items: articles.map { |article| build_for_article(article, title) }
+      items: items
     }.to_json
   end
 
