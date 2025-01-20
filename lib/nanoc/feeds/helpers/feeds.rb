@@ -23,7 +23,7 @@ module Nanoc::Feeds::Helpers::Feeds
       version: "https://jsonfeed.org/version/1.1",
       title: title,
       home_page_url: "#{config[:base_url]}",
-      feed_url: "#{config[:base_url]}/feed.json",
+      feed_url: feed_url,
       items: items
     }.to_json
   end
