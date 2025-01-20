@@ -1,10 +1,10 @@
 # Nanoc::Feeds
 
-A set of helpers for generating additional feeds in nanoc. Currenntly JSON and Atom feeds are supported.
+A set of helpers for generating additional feeds in nanoc. Currently JSON and Atom feeds are supported.
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Install the gem and add to your nanoc project Gemfile by executing:
 
 ```bash
 bundle add nanoc-feeds
